@@ -2,6 +2,7 @@ package com.chirag.dualdatasource.controller;
 
 import com.chirag.dualdatasource.college.entity.College;
 import com.chirag.dualdatasource.college.repository.CollegeRepository;
+import com.chirag.dualdatasource.course.repository.CourseRepository;
 import com.chirag.dualdatasource.dto.Response;
 import com.chirag.dualdatasource.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,16 @@ public class Controllers {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    CourseRepository courseRepository;
+
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public Response getResponse(){
         Response response = new Response();
         response.setColleges(collegeRepository.findAll());
         response.setStudents(studentRepository.findAll());
+        response.setCourses(courseRepository.findAll());
         return response;
     }
 }
